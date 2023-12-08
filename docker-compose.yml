@@ -1,0 +1,50 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+    volumes:
+      - ./src:/app
+    command: "composer install && php artisan key:generate"
+    networks:
+      - bridge
+
+  nginx:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    ports:
+      - 8000:80
+    volumes:
+      - ./src/:/app
+    working_dir: /var/www
+    depends_on:
+      - app
+    networks:
+      - bridge
+
+  db:
+    build:
+      context: .
+      dockerfile: ./docker/db/Dockerfile
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: db_development
+      MYSQL_USER: db-user
+      MYSQL_PASSWORD: password
+      TZ: 'Asia/Tokyo'
+    volumes:
+      - mysql-volume:/var/lib/mysql
+    networks:
+      - bridge
+
+networks:
+  bridge:
+    driver: bridge
+
+volumes:
+  mysql-volume:
