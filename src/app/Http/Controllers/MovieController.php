@@ -40,12 +40,13 @@ class MovieController extends Controller
         $file = $request->file('image');
         //dd($file);
         $path = Storage::disk('s3')->put('path/to/store', $file);
+        $path_url = Storage::disk('s3')->url($path);
         
 
         // データベースに画像情報を保存
         Movie::create([
             'file_name' => $file->getClientOriginalName(),
-            'file_path' => $path
+            'file_path' => $path_url
         ]);
 
         return redirect()->route('movie.index');
