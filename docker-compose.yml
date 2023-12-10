@@ -7,7 +7,6 @@ services:
       dockerfile: ./docker/php/Dockerfile
     volumes:
       - ./src:/app
-    command: "composer install && php artisan key:generate"
     networks:
       - bridge
 
