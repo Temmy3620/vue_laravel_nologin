@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Movie;
+use Illuminate\Support\Facades\Storage;
 
 class MovieController extends Controller
 {
@@ -13,8 +14,8 @@ class MovieController extends Controller
     public function index()
     {
         //
-        //$resources = Movie::all();
-        return view('movie.index');
+        $movies = Movie::all();
+        return view('movie.index',compact('movies'));
     }
 
     /**
@@ -32,6 +33,22 @@ class MovieController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $file = $request->file('image');
+        //dd($file);
+        $path = Storage::disk('s3')->put('path/to/store', $file);
+        
+
+        // データベースに画像情報を保存
+        Movie::create([
+            'file_name' => $file->getClientOriginalName(),
+            'file_path' => $path
+        ]);
+
+        return redirect()->route('movie.index');
     }
 
     /**
