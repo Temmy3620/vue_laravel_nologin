@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: ./docker/php/Dockerfile
-    user: www-data
+    command: ["./start.sh"]
     volumes:
       - ./src:/app
     networks:
