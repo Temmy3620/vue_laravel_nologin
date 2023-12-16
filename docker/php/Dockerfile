@@ -5,8 +5,6 @@ RUN apt-get update && apt-get install -y \
     git unzip libzip-dev libicu-dev libonig-dev && \
     docker-php-ext-install intl pdo_mysql zip bcmath
 
-RUN chown -R www-data:www-data /app/storage \
-    && chown -R www-data:www-data /app/bootstrap/cache
 
 COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
 
