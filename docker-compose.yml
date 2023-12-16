@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: ./docker/php/Dockerfile
+    user: www-data
     volumes:
       - ./src:/app
     networks:
