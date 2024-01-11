@@ -1,3 +1,12 @@
-body {
-    background-color: #7e7e7e;
+body{
+    background-color: #40454a;
+}
+.sidebar {
+    height: 100vh;
+    background-color: #40454a;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow-y: auto;
+    padding-top: 20px;
 }
