@@ -5,12 +5,14 @@ services:
     build:
       context: .
       dockerfile: ./docker/php/Dockerfile
+    command: bash -c "curl -sL https://deb.nodesource.com/setup_18.x | bash - && apt-get install -y nodejs && php-fpm"
     volumes:
       - ./src/:/app
       - ./logs/php-error.log:/var/log/error.log
       - ./logs/php-access.log:/var/log/access.log
     networks:
       - bridge
+
   nginx:
     build:
       context: .
