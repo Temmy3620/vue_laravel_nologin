@@ -4,6 +4,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ThreadController;
+use App\Http\Controllers\ScrapingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,4 @@ Route::get('/', function () {
 
 
 Route::get('thread/', [ThreadController::class, 'index']);
+Route::get('scraping/', [ScrapingController::class, 'index']);

@@ -1,6 +1,6 @@
 <template>
     <div>
-    <button type="button" class="btn btn-secondary mt-3" @click="addSearchForm">+ add search word</button>
+    <button type="button" class="btn btn-secondary" @click="addSearchForm">+ add search word</button>
     <div v-for="(searchForm, index) in searchForms" :key="index">
         <!-- ここに各inputフォームのマークアップを追加 -->
         <!--<input type="text" class="mt-2" v-model="searchForm.value" placeholder="Search term">-->
