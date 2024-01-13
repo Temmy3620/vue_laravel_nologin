@@ -4,12 +4,14 @@
 
 <div class="row">
     <div class="col-4 sidebar">
-      <div id="app"></div>
+      
         <h2>Coment Analysis</h2>
         <p>Your main content goes here.</p>
-
+        <div class="d-flex flex-row-reverse">
+          <button type="button" class="btn btn-secondary">Search</button>
+        </div>
         
-        <input class="form-control form-control-sm mt-4" type="text" placeholder="XXXX/XX/XX XX:XX:XX"/>
+        <input class="form-control form-control-sm mt-5" type="text" placeholder="XXXX/XX/XX XX:XX:XX"/>
         <input class="form-control form-control-sm mt-1" type="text" placeholder="XXXX/XX/XX XX:XX:XX"/>
         
         <div class="dropdown mt-5">
@@ -23,9 +25,11 @@
               <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
         </div>
-        <button type="button" class="btn btn-secondary mt-5">+ add search from</button>
+        
+        <div id="app"></div>
+        
         <div class="space-5"></div>
-        <button type="button" class="btn btn-secondary">Secondary</button>
+        
 
         
     </div>

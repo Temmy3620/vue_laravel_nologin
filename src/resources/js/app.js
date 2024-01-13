@@ -4,8 +4,12 @@ import '../css/app.css';
 import { createApp } from "vue";
 import App from "./component/App.vue";
 
-// App.vue をルートコンポーネントとして使用してアプリケーションを作成
+
 const app = createApp(App);
 
 
 app.mount("#app");
+
+// 編集後
+// npm run build
+// docker-compose up --build
