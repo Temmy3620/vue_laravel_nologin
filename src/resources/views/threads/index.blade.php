@@ -4,17 +4,17 @@
 
 <div class="row">
     <div class="col-4 sidebar">
+      <div id="app"></div>
         <h2>Coment Analysis</h2>
         <p>Your main content goes here.</p>
 
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Username" aria-label="Username">
-            <span class="input-group-text">~</span>
-            <input type="text" class="form-control" placeholder="Server" aria-label="Server">
-        </div>
-        <div class="dropdown">
+        
+        <input class="form-control form-control-sm mt-4" type="text" placeholder="XXXX/XX/XX XX:XX:XX"/>
+        <input class="form-control form-control-sm mt-1" type="text" placeholder="XXXX/XX/XX XX:XX:XX"/>
+        
+        <div class="dropdown mt-5">
             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown link
+              Dropdown sort
             </a>
           
             <ul class="dropdown-menu">
@@ -23,10 +23,14 @@
               <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
         </div>
-        <button type="button" class="btn btn-secondary mt-5">Secondary</button>
+        <button type="button" class="btn btn-secondary mt-5">+ add search from</button>
+        <div class="space-5"></div>
+        <button type="button" class="btn btn-secondary">Secondary</button>
+
+        
     </div>
   
-    <div class="col-8 ms-sm-auto px-md-4" data-bs-theme="dark">
+    <div class="col-8 ms-auto px-md-4" data-bs-theme="dark">
         <div class="d-flex flex-column align-items-stretch flex-shrink-0 w-100" style="width: 380px;">
             <div class="list-group list-group-flush border-bottom scrollarea">
               <a href="#" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">

@@ -6,19 +6,20 @@ services:
       context: .
       dockerfile: ./docker/php/Dockerfile
     volumes:
-      - ./src:/app
+      - ./src/:/app
+      - ./logs/php-error.log:/var/log/error.log
+      - ./logs/php-access.log:/var/log/access.log
     networks:
       - bridge
-
   nginx:
     build:
       context: .
       dockerfile: ./docker/nginx/Dockerfile
     ports:
       - 8000:80
+      - 5173:5173
     volumes:
       - ./src/:/app
-    working_dir: /var/www
     depends_on:
       - app
     networks:

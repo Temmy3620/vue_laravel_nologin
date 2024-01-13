@@ -10,4 +10,9 @@ class ThreadController extends Controller
     {
         return view('threads.index');
     }
+    
+    public function load()
+    {
+
+    }
 }

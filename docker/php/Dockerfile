@@ -11,3 +11,8 @@ COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
 COPY --from=composer:2.6.5 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app
+
+# Node.jsのダウンロードと解凍
+#curl -sL https://deb.nodesource.com/setup_18.x | bash -
+#apt-get install -y nodejs
+

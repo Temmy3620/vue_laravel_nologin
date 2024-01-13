@@ -13,6 +13,7 @@
     <!-- Bootstrap CSS -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>Hello, world!</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     {{--@include('layouts.navi')--}}
   </head>
   <body>
