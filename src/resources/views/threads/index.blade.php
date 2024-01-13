@@ -32,15 +32,19 @@
     <div class="col-8 ms-auto px-md-4" data-bs-theme="dark">
         <div class="d-flex flex-column align-items-stretch flex-shrink-0 w-100" style="width: 380px;">
             <div class="list-group list-group-flush border-bottom scrollarea">
-              @for ($i = 0; $i < 100; $i++)
-                <div class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">
-                  <div class="d-flex w-100 align-items-center justify-content-between">
-                    <strong class="mb-1">List group item heading</strong>
-                    <small>Wed</small>
-                  </div>
-                  <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
-                </div>
-              @endfor
+              @if(!empty($threads))
+                @foreach ($threads as $thread)
+                  <div class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">
+                    <div class="d-flex w-100 align-items-center justify-content-between">
+                      <strong class="mb-1">{{ $thread->date_and_time }}</strong>
+                      <small>{{ $thread->thread_title }}</small>
+                    </div>
+                    <div class="col-10 mb-1 small">{{ $thread->comment }}</div>
+                  </div>  
+                @endforeach
+                      
+              @endif
+              
               
             </div>
           </div>
