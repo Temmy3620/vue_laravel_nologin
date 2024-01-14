@@ -21,7 +21,7 @@ class InputDataSeeder extends Seeder
 
         $filter_url = [];
 
-        for ($i = 7; $i <= 8; $i++) {//65
+        for ($i = 7; $i <= 65; $i++) {//65
             $html = 'https://wiki3.jp/nijisanji_anti/page/' . $i;
             $client = new \GuzzleHttp\Client();
             $response = $client->request('GET', $html);
@@ -72,12 +72,12 @@ class InputDataSeeder extends Seeder
             
                 if ($entryCrawler->filter('dd')->count() > 0) {
                     $content = $entryCrawler->text();
-                
+                    $comment = mb_convert_encoding($content, 'UTF-8');
                 
                     
 
                     DB::table('threads')->insert([
-                        'comment' => $content,
+                        'comment' => $comment,
                         'date_and_time' => Carbon::create(
                             intval(substr($dateTimeString, 0, 4)),
                             intval(substr($dateTimeString, 5, 2)),
@@ -86,7 +86,7 @@ class InputDataSeeder extends Seeder
                             intval(substr($dateTimeString, 19, 2)),
                             intval(substr($dateTimeString, 22, 2))
                         ),
-                        'thread_title' => $title,
+                        'thread_title' => mb_convert_encoding($title, 'UTF-8'),
                     ]);
                 }
             }

@@ -8,7 +8,7 @@
       <h2>Coment Analysis</h2>
       <p>Let's enjoy!!</p>
 
-      <form method="POST" action="{{ route('thread.search') }}">
+      <form method="get" action="{{ route('threads.index') }}">
         @csrf
         <div class="mt-5">
           <button type="submit" class="btn btn-secondary">Search<i class="ms-2 fas fa-search"></i></button>
@@ -26,9 +26,10 @@
           <input type="time" class="form-control" name="end_time">
         </div>
 
-        <select class="form-select form-select-sm mt-5 w-50" name="order_date" aria-label=".form-select-sm example">
-          <option selected value="asc">old date</option>
-          <option value="desc">new date</option>
+        <select class="form-select form-select-sm mt-5 w-50" name="select_order" aria-label=".form-select-sm example">
+          <option selected value="desc">new date</option>
+          <option value="asc">old date</option>
+          
         </select>
 
         <div id="app" class="mt-5"></div>
