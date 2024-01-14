@@ -5,25 +5,36 @@
 <div class="row">
     <div class="col-4 sidebar">
       
-        <h2>Coment Analysis</h2>
-        <p>Let's enjoy!!</p>
-        <div class="d-flex flex-row-reverse">
-          <button type="button" class="btn btn-secondary">Search</button>
+      <h2>Coment Analysis</h2>
+      <p>Let's enjoy!!</p>
+
+      <form method="POST" action="{{ route('thread.search') }}">
+        @csrf
+        <div class="mt-5">
+          <button type="submit" class="btn btn-secondary">Search<i class="ms-2 fas fa-search"></i></button>
         </div>
-        
-        <input class="form-control form-control-sm mt-5" type="text" placeholder="XXXX/XX/XX XX:XX:XX"/>
-        <input class="form-control form-control-sm mt-1" type="text" placeholder="XXXX/XX/XX XX:XX:XX"/>
-        
-        <select class="form-select form-select-sm mt-5 w-50" aria-label=".form-select-sm example">
-          <option selected>Open this select menu</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+
+        <div class="input-group mt-5">
+          <input type="date" class="form-control" name="start_date_at">
+          <span class="input-group-text">:</span>
+          <input type="time" class="form-control" name="start_time">
+        </div>
+
+        <div class="input-group mt-1">
+          <input type="date" class="form-control" name="end_date_at">
+          <span class="input-group-text">:</span>
+          <input type="time" class="form-control" name="end_time">
+        </div>
+
+        <select class="form-select form-select-sm mt-5 w-50" name="order_date" aria-label=".form-select-sm example">
+          <option selected value="asc">old date</option>
+          <option value="desc">new date</option>
         </select>
-        
+
         <div id="app" class="mt-5"></div>
-        
+
         <div class="space-5"></div>
+      </form>
         
 
         

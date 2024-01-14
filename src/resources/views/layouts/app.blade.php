@@ -9,10 +9,11 @@
     <link rel="icon" href="{{ asset('125_arr_hoso.png') }}" type="image/png">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous" />
+
     <!-- Bootstrap CSS -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <title>Hello, world!</title>
+    <title>Coment Analysis</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     {{--@include('layouts.navi')--}}
   </head>

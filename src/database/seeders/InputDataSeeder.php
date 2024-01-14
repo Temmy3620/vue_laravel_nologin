@@ -1,21 +1,22 @@
 <?php
 
-namespace App\Services;
+namespace Database\Seeders;
 
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
 use Symfony\Component\DomCrawler\Crawler;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
-use DateTime;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-use Symfony\Component\HttpFoundation\StreamedResponse;
 
-class ScrapingService
+class InputDataSeeder extends Seeder
 {
-    public function getContents()
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
     {
+        DB::table('threads')->truncate();
         
-        
-            
         $checkUrlString = "http://anago.2ch.sc/test/read.cgi/streaming";
 
         $filter_url = [];
@@ -73,29 +74,25 @@ class ScrapingService
                     $content = $entryCrawler->text();
                 
                 
-                    $threads[] = [
-                        'title' => $title,
-                        'yaer' => intval(substr($dateTimeString, 0, 4)),
-                        'month' => intval(substr($dateTimeString, 5, 2)),
-                        'date' => intval(substr($dateTimeString, 8, 2)),
-                        'h' => intval(substr($dateTimeString, 16, 2)),
-                        'm' => intval(substr($dateTimeString, 19, 2)),
-                        's' => intval(substr($dateTimeString, 22, 2)),
-                        'micro' => intval(substr($dateTimeString, 25, 2)),
-                        'content' => $content,
-                    ];
+                    
+
+                    DB::table('threads')->insert([
+                        'comment' => $content,
+                        'date_and_time' => Carbon::create(
+                            intval(substr($dateTimeString, 0, 4)),
+                            intval(substr($dateTimeString, 5, 2)),
+                            intval(substr($dateTimeString, 8, 2)),
+                            intval(substr($dateTimeString, 16, 2)),
+                            intval(substr($dateTimeString, 19, 2)),
+                            intval(substr($dateTimeString, 22, 2))
+                        ),
+                        'thread_title' => $title,
+                    ]);
                 }
             }
-            //dd($threads);
+            
         }
     
-        return $threads;
-    
-    
-    
-    
         
-        
-
     }
 }

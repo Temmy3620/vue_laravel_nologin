@@ -25,4 +25,6 @@ Route::get('/', function () {
 
 
 Route::get('thread/', [ThreadController::class, 'index']);
+Route::post('thread/search', [ThreadController::class, 'search'])->name('thread.search');
+
 Route::get('scraping/', [ScrapingController::class, 'index']);
