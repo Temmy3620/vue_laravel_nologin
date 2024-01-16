@@ -33,7 +33,7 @@ class ThreadController extends Controller
         if (!empty($sortOrder = $request->input("select_order"))) {
             $query->orderBy('date_and_time', $sortOrder);
         }
-        dd($query);
+        
         $threads = $query->get();
 
         return view('threads.index',compact('threads'));
