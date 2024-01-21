@@ -3,7 +3,7 @@
     <button type="button" class="btn btn-secondary" @click="addSearchForm">+ add search words</button>
     <div v-for="(searchForm, index) in searchForms" :key="index">
         <div class="input-group mt-3">
-          <input type="text" class="form-control" v-model="searchForm.value" placeholder="Search word" aria-label="Recipient's username" aria-describedby="button-addon2">
+          <input type="text" class="form-control" v-model="searchForm.value" :name="'searchForms[' + index + ']'" :value="searchForm.value" placeholder="Search word">
           <button class="btn btn-outline-secondary" type="button" id="button-addon2" @click="removeSearchForm(index)">Delete</button>
         </div>
     </div>

@@ -11,24 +11,24 @@
       <form method="get" action="{{ route('threads.index') }}">
         @csrf
         <div class="mt-5">
-          <button type="submit" class="btn btn-secondary">Search<i class="ms-2 fas fa-search"></i></button>
+          <button type="submit" class="btn btn-secondary" @submit.prevent="submitData">Search<i class="ms-2 fas fa-search"></i></button>
         </div>
 
         <div class="input-group mt-5">
-          <input type="date" class="form-control" name="start_date_at">
+          <input type="date" class="form-control" name="start_date_at" value="{{ $startDate }}">
           <span class="input-group-text">:</span>
-          <input type="time" class="form-control" name="start_time">
+          <input type="time" class="form-control" name="start_time" value="{{ $startTime }}">
         </div>
 
         <div class="input-group mt-1">
-          <input type="date" class="form-control" name="end_date_at">
+          <input type="date" class="form-control" name="end_date_at" value="{{ $endDate }}">
           <span class="input-group-text">:</span>
-          <input type="time" class="form-control" name="end_time">
+          <input type="time" class="form-control" name="end_time" value="{{ $endTime }}">
         </div>
 
         <select class="form-select form-select-sm mt-5 w-50" name="select_order" aria-label=".form-select-sm example">
-          <option selected value="desc">new date</option>
-          <option value="asc">old date</option>
+          <option value="desc" {{ $sortOrder == 'desc' ? 'selected' : '' }}>new date</option>
+          <option value="asc" {{ $sortOrder == 'asc' ? 'selected' : '' }}>old date</option>
           
         </select>
 

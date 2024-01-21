@@ -22,6 +22,7 @@ class InputDataSeeder extends Seeder
         $filter_url = [];
 
         for ($i = 7; $i <= 65; $i++) {//65
+
             $html = 'https://wiki3.jp/nijisanji_anti/page/' . $i;
             $client = new \GuzzleHttp\Client();
             $response = $client->request('GET', $html);
@@ -89,6 +90,8 @@ class InputDataSeeder extends Seeder
                         'thread_title' => mb_convert_encoding($title, 'UTF-8'),
                     ]);
                 }
+                
+                //sleep(3600); // sleep関数は秒単位で指定します これで接続エラーを防ぐ
             }
             
         }
