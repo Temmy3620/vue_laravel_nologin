@@ -15,6 +15,7 @@ class ThreadController extends Controller
         $endDate = $request->input("end_date_at") ?? null;
         $endTime = $request->input("end_time") ?? null;
         $sortOrder = $request->input("select_order") ?? null;
+        
 
         $query = Thread::query();
         
@@ -66,8 +67,8 @@ class ThreadController extends Controller
             }
         }
         
-        $threads = $query->take(50)->get();
-
+        $threads = $query->paginate(50);
+        
         return view('threads.index',compact('threads', 'startDate', 'startTime', 'endDate', 'endTime', 'sortOrder'));
 
 

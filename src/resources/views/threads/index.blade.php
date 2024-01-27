@@ -36,7 +36,23 @@
 
         <div class="space-5"></div>
       </form>
+      
+      <div class="pagination-2 mb-5" actpage="1">
+        <a href="{{ $threads->previousPageUrl() }}">&laquo;</a>
         
+        @php
+          $currentPage = $threads->currentPage();
+          $lastPage = $threads->lastPage();
+        @endphp
+
+        @for ($i = max(1, $currentPage - 1); $i <= min($lastPage, $currentPage + 1); $i++)
+          <a class="{{ ($threads->currentPage() == $i) ? 'active' : '' }}" href="{{ $threads->url($i) }}">{{ $i }}</a>
+        @endfor
+        
+        <a href="{{ $threads->nextPageUrl() }}">&raquo;</a>
+      </div>
+      
+
 
         
     </div>
@@ -62,6 +78,7 @@
           </div>
     </div>
   </div>
+  
 
 
   

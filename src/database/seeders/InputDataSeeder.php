@@ -40,9 +40,10 @@ class InputDataSeeder extends Seeder
         }
     
         $threads = [];
-    
+        $stopCount = 0;
         foreach($filter_url as $html){
-        
+            
+            $stopCount++;
         
             $client = new \GuzzleHttp\Client();
             $response = $client->request('GET', $html);
@@ -52,12 +53,11 @@ class InputDataSeeder extends Seeder
         
         
             $currentDate = null;
-        
+            
+            
             foreach ($threadEntries as $entry) {
+                
                 $entryCrawler = new Crawler($entry);
-            
-            
-            
             
                 if ($entryCrawler->filter('dt')->count() > 0) {
                     $currentDate = $entryCrawler->text();
@@ -90,9 +90,15 @@ class InputDataSeeder extends Seeder
                         'thread_title' => mb_convert_encoding($title, 'UTF-8'),
                     ]);
                 }
+
                 
-                //sleep(3600); // sleep関数は秒単位で指定します これで接続エラーを防ぐ
             }
+
+            if($stopCount == 500){
+                sleep(3600);
+                $stopCount = 0;
+            }
+                
             
         }
     
