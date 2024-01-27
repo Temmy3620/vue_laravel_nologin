@@ -15,24 +15,32 @@
         </div>
 
         <div class="input-group mt-5">
-          <input type="date" class="form-control" name="start_date_at" value="{{ $startDate }}">
+          <input type="date" class="form-control" name="start_date_at" value="{{ request()->query('start_date_at') }}">
           <span class="input-group-text">:</span>
-          <input type="time" class="form-control" name="start_time" value="{{ $startTime }}">
+          <input type="time" class="form-control" name="start_time" value="{{ request()->query('start_time') }}">
         </div>
 
         <div class="input-group mt-1">
-          <input type="date" class="form-control" name="end_date_at" value="{{ $endDate }}">
+          <input type="date" class="form-control" name="end_date_at" value="{{ request()->query('end_date_at') }}">
           <span class="input-group-text">:</span>
-          <input type="time" class="form-control" name="end_time" value="{{ $endTime }}">
+          <input type="time" class="form-control" name="end_time" value="{{ request()->query('end_time') }}">
         </div>
 
-        <select class="form-select form-select-sm mt-5 w-50" name="select_order" aria-label=".form-select-sm example">
-          <option value="desc" {{ $sortOrder == 'desc' ? 'selected' : '' }}>new date</option>
-          <option value="asc" {{ $sortOrder == 'asc' ? 'selected' : '' }}>old date</option>
+        <select class="form-select form-select-sm my-5 w-50" name="select_order" aria-label=".form-select-sm example">
+          <option value="desc" {{ request()->query('select_order') == 'desc' ? 'selected' : '' }}>new date</option>
+          <option value="asc" {{ request()->query('select_order') == 'asc' ? 'selected' : '' }}>old date</option>
           
         </select>
 
-        <div id="app" class="mt-5"></div>
+        @if(!empty(request()->query('searchForms')))
+          <p class="fs-6 mt-5">search word : 
+            @foreach(request()->query('searchForms') as $word)
+            {{ $word }},
+            @endforeach
+          </p>
+        @endif
+
+        <div id="app"></div>
 
         <div class="space-5"></div>
       </form>
@@ -45,7 +53,7 @@
           $lastPage = $threads->lastPage();
         @endphp
 
-        @for ($i = max(1, $currentPage - 1); $i <= min($lastPage, $currentPage + 1); $i++)
+        @for ($i = max(1, $currentPage - 2); $i <= min($lastPage, $currentPage + 2); $i++)
           <a class="{{ ($threads->currentPage() == $i) ? 'active' : '' }}" href="{{ $threads->url($i) }}">{{ $i }}</a>
         @endfor
         

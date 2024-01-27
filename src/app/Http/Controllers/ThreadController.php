@@ -15,6 +15,7 @@ class ThreadController extends Controller
         $endDate = $request->input("end_date_at") ?? null;
         $endTime = $request->input("end_time") ?? null;
         $sortOrder = $request->input("select_order") ?? null;
+        $searchForms = $request->input("searchForms") ?? null;
         
 
         $query = Thread::query();
@@ -34,40 +35,27 @@ class ThreadController extends Controller
             
         }
 
+        if(!empty($searchForms)){
+            $query->where(function ($query) use ($searchForms) {
+                foreach ($searchForms as $keyword) {
+                    $query->orWhere('comment', 'like', '%' . $keyword . '%');
+                }
+            });
+        }
+
         if (!empty($sortOrder)) {
             $query->orderBy('date_and_time', $sortOrder);
         }
 
-        if(!empty($searchForms)){
-            if (!empty($startDate) && !empty($startTime)) {
-                $query->where('date_and_time', '>=', $startDate . " " . $startTime . ":00");
-    
-            }else if (!empty($startDate)) {
-                $query->where('date_and_time', '>=', $startDate);
-            
-            }
-    
-            if (!empty($endDate) && !empty($endTime)) {
-                $query->where('date_and_time', '<=', $endDate . " " . $endTime . ":99");
-            }else if (!empty($endDate)) {
-                $query->where('date_and_time', '<=', $endDate);
-                
-            }
-    
-            if (!empty($sortOrder)) {
-                $query->orderBy('date_and_time', $sortOrder);
-            }
-    
-            if(!empty($searchForms)){
-                $query->where(function ($query) use ($searchForms) {
-                    foreach ($searchForms as $keyword) {
-                        $query->orWhere('comment', 'like', '%' . $keyword . '%');
-                    }
-                });
-            }
-        }
-        
-        $threads = $query->paginate(50);
+        $threads = $query->paginate(50)
+        ->appends([
+            'start_date_at' => $startDate,
+            'start_time' => $startTime,
+            'end_date_at' => $endDate,
+            'end_time' => $endTime,
+            'select_order' => $sortOrder,
+            'searchForms' => $searchForms
+        ]);
         
         return view('threads.index',compact('threads', 'startDate', 'startTime', 'endDate', 'endTime', 'sortOrder'));
 
