@@ -21,7 +21,7 @@ class InputDataSeeder extends Seeder
 
         $filter_url = [];
 
-        for ($i = 7; $i <= 65; $i++) {//65
+        for ($i = 9; $i <= 65; $i++) {//10
 
             $html = 'https://wiki3.jp/nijisanji_anti/page/' . $i;
             $client = new \GuzzleHttp\Client();
@@ -93,9 +93,9 @@ class InputDataSeeder extends Seeder
 
                 
             }
-
-            if($stopCount == 500){
-                sleep(3600);
+            sleep(110);
+            if($stopCount == 250){
+                sleep(7200);
                 $stopCount = 0;
             }
                 
